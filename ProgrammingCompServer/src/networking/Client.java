@@ -121,5 +121,16 @@ public class Client {
 		}
 		return toReturn;
 	}
+	
+	public static boolean verifyUsername(String username){
+		out.println("verify username");
+		out.println(username);
+		try {
+			return in.readLine().equals("Yes");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
 

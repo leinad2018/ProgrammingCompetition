@@ -6,6 +6,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import networking.Formatter;
+import submission.ProblemSubmission;
+
 public class ComboBoxDemo extends JPanel {
 
 	private static final long serialVersionUID=1L;
@@ -15,7 +18,10 @@ public class ComboBoxDemo extends JPanel {
 	public ComboBoxDemo() {
 		super(new BorderLayout());
 
-		String[] petStrings= {"Bird", "Cat", "Dog", "Rabbit", "Pig"};
+		String[] petStrings=new String[Formatter.problems];
+		for(int i = 0; i < petStrings.length; i++){
+			petStrings[i] = ProblemSubmission.questionNumberToQuestionName(i);
+		}
 
 		petList=new JComboBox<String>(petStrings);
 		petList.setSelectedIndex(4);

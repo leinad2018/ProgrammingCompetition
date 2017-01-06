@@ -1,4 +1,5 @@
-set homeDirectory=%1
+cd %1
+set homeDirectory=%CD%
 set personName=%2
 set programName=%3
 set inputPath=%4

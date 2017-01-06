@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import networking.Client;
+
 public class LoginWindow {
 	private JFrame frame;
 	private JPanel mainPanel;
@@ -63,7 +65,7 @@ public class LoginWindow {
 	}
 	
 	public boolean verifyCredentials(String username) {
-		return username.equals("asdf");
+		return Client.verifyUsername(username);
 	}
 	
 	public boolean areCredentialsVerified() {

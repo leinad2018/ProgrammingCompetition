@@ -12,6 +12,8 @@ public class MultiServer {
 	
 	public static void main(String[] args) throws IOException {
 		System.out.println("Server Started...");
+		Process p = Runtime.getRuntime().exec("cmd /c start ..\\ProgComp\\MakeDirectories.bat "+ "..\\ProgComp " + MultiServerThread.users);
+		System.out.println("Files created...");
 		ServerSocket serverSocket=null;
 		boolean listening=true;
 		short port=9999;
