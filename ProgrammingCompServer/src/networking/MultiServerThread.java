@@ -42,7 +42,7 @@ public class MultiServerThread extends Thread {
 						total+=line.substring("fake:".length())+"\n";
 						line=in.readLine();
 					}
-					String fileName=username+problemNumber+".java";
+					String fileName="..\\ProgComp\\" + username + "\\" + ProblemSubmission.questionNumberToQuestionName(problemNumber)+ "\\"+ProblemSubmission.questionNumberToQuestionName(problemNumber)+".java";
 					FileLoader.writeToFile(fileName, total);
 					String returnMessage=gradeSubmission(fileName, problemNumber, username);
 					boolean correct=returnMessage.equals("correct");

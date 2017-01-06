@@ -15,7 +15,7 @@ public class Client {
 	private static Socket kkSocket=null;
 	private static PrintWriter out=null;
 	private static BufferedReader in=null;
-	public static String serverIP="172.16.11.105";
+	public static String serverIP="172.16.1.44";
 	
 	public static void clientInit() {
 		try {

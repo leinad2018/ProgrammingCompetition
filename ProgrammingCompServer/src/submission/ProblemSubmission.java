@@ -36,7 +36,7 @@ public class ProblemSubmission implements Submittable {
 	public static String questionNumberToQuestionName(int questionNumber) {
 		switch(questionNumber) {
 		case 0:
-			return "Question 0";
+			return "HelloWorld";
 		case 1:
 			return "Question 1";
 		case 2:
