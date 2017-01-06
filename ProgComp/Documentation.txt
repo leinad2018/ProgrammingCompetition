@@ -1,0 +1,5 @@
+To use application, Directories for each contestant must be made beforehand. To do this, run the MakeDirectories.bat file with
+space separated names. Note that each name must be one word. After this has been completed, run the RunTests.bat file with the
+inputs of 1) The home directory of the competition 2) The name of the person 3) The name of the program to test 4) The path to
+the input file. The Answer.txt file in the personName\programName directory will show 0 if the output is correct or 1/-1 if
+incorrect. 
