@@ -14,12 +14,15 @@ import submission.Submittable;
 
 public class MultiServerThread extends Thread {
 	private Socket socket=null;
-
+	private long competitionStartTime;
+	
 	public static String users="asdf DavidHarmeyer";
+	
 
-	public MultiServerThread(Socket socket) {
+	public MultiServerThread(Socket socket, long competitionStartTime) {
 		super("MultiServer Thread");
 		this.socket=socket;
+		this.competitionStartTime=competitionStartTime;
 	}
 
 	public void run() {
@@ -96,7 +99,7 @@ public class MultiServerThread extends Thread {
 				if (inputLine.equals("view scores")) {
 					String username=in.readLine();
 					Submittable[] submittedThings=MultiServer.getSubmittedThings();
-					String[][] toView=Formatter.formatInput(submittedThings);
+					String[][] toView=Formatter.formatInput(submittedThings, competitionStartTime);
 					out.println(3+Formatter.problems);
 					for (int x=0; x<toView.length; x++) {
 						for (int y=0; y<3+Formatter.problems; y++) {

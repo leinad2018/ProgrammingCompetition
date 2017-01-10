@@ -6,13 +6,18 @@ public class Player implements Comparable {
 	private String username;
 	private int[] problemSubmissions=new int[500];//max of 500 problems
 	private boolean[] correctProblems=new boolean[500];
+	private long[] problemCompletionTime=new long[500];
+	private long competitionStartTime;
 	
-	public Player(String username) {
+	
+	public Player(String username, long competitionStartTime) {
 		this.username=username;
 		for (int i=0; i<problemSubmissions.length; i++) {
 			correctProblems[i]=false;
 			problemSubmissions[i]=0;
+			problemCompletionTime[i]=0;
 		}
+		this.competitionStartTime=competitionStartTime;
 	}
 	
 	public boolean isUsername(String username) {
@@ -22,6 +27,9 @@ public class Player implements Comparable {
 	public void addSubmission(ProblemSubmission submission) {
 		problemSubmissions[submission.getQuestionNumber()]++;
 		correctProblems[submission.getQuestionNumber()]=correctProblems[submission.getQuestionNumber()]||submission.isCorrect();
+		if (submission.isCorrect()) {
+			problemCompletionTime[submission.getQuestionNumber()]=submission.getSubmissionTime()-competitionStartTime;
+		}
 	}
 
 	public int compareTo(Object o) {
@@ -53,7 +61,14 @@ public class Player implements Comparable {
 	}
 	
 	public int getPenaltyPoints() {
-		return 99;
+		int total=0;
+		for (int problemNumber=0; problemNumber<correctProblems.length; problemNumber++) {
+			if (gotProblemCorrect(problemNumber)) {
+				total+=problemCompletionTime[problemNumber]/1000/60;
+				total+=20*(getProblemSubmissions(problemNumber)-1);
+			}
+		}
+		return total;
 	}
 	
 	public boolean gotProblemCorrect(int problem) {

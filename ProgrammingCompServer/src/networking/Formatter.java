@@ -9,7 +9,7 @@ import submission.Submittable;
 public class Formatter {
 	public static final int problems=5;
 	
-	public static String[][] formatInput(Submittable[] submissions) {
+	public static String[][] formatInput(Submittable[] submissions, long competitionStartTime) {
 		ArrayList<ProblemSubmission> problemSubmissions=new ArrayList<>();
 		for (Submittable s:submissions) {
 			if (s instanceof ProblemSubmission) {
@@ -27,7 +27,7 @@ public class Formatter {
 				}
 			}
 			
-			players.add(new Player(submission.getSubmittedBy()));
+			players.add(new Player(submission.getSubmittedBy(), competitionStartTime));
 			players.get(players.size()-1).addSubmission(submission);
 		}
 		

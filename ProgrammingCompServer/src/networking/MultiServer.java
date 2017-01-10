@@ -18,6 +18,7 @@ public class MultiServer {
 		boolean listening=true;
 		short port=9999;
 
+		final long competitionStartTime=System.currentTimeMillis();
 		try {
 			serverSocket=new ServerSocket(port);
 		} catch (IOException e) {
@@ -29,7 +30,7 @@ public class MultiServer {
 		answerQuestionThread.start();
 		System.out.println("thread started...");
 		while (listening) {
-			new MultiServerThread(serverSocket.accept()).start();
+			new MultiServerThread(serverSocket.accept(), competitionStartTime).start();
 		}
 
 		serverSocket.close();
