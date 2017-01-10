@@ -7,7 +7,7 @@ public class HelloWorld {
 		Scanner input = new Scanner(System.in);
 		System.out.println(input.nextLine());
 		System.out.println(input.nextLine());
-		while(true){
-		}
+		throw new Exception();
 	}
+
 }

@@ -6,5 +6,5 @@ set inputPath=%4
 set fullPath=%homeDirectory%\%personName%\%programName%
 cd %fullPath%
 javac %programName%.java || echo Compile error
-java %programName% < %inputPath% || echo Runtime error
+java %programName% < %homeDirectory%\%inputPath% || echo Runtime error
 cd %homeDirectory%

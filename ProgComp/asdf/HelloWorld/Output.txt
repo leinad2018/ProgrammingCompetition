@@ -1,1 +1,4 @@
+hello world
+test line 4
 Runtime error
+Terminate batch job (Y/N)? 
