@@ -1,2 +1,2 @@
-ProgrammingCompServer/bin/*
-*.class
+ProgrammingCompServer/bin/**
+**/*.class
