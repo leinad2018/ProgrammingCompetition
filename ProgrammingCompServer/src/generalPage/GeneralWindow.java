@@ -35,6 +35,8 @@ public class GeneralWindow {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		Thread updateThread=new Thread(new UpdateThread(this));
+		updateThread.start();
 	}
 
 	private void setUpButtons() {
@@ -110,6 +112,12 @@ public class GeneralWindow {
 		default:
 			System.out.println("Invalid Content Type!");
 			throw new Error("Invalid Content Type!");
+		}
+	}
+	
+	public void softContentUpdate() {
+		if (currentContentType==ContentTypes.VIEW_SCORES||currentContentType==ContentTypes.VIEW_SUBMISSION_HISTORY) {
+			updateContentType();
 		}
 	}
 }

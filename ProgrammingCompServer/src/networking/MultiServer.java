@@ -25,6 +25,9 @@ public class MultiServer {
 			System.exit(-1);
 		}
 
+		Thread answerQuestionThread=new Thread(new AnswerQuestionThread());
+		answerQuestionThread.start();
+		System.out.println("thread started...");
 		while (listening) {
 			new MultiServerThread(serverSocket.accept()).start();
 		}

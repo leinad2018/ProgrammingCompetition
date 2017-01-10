@@ -30,7 +30,7 @@ public class MultiServerThread extends Thread {
 			String inputLine;
 
 			while ((inputLine=in.readLine())!=null) {
-				System.out.println(inputLine);
+				//System.out.println(inputLine);
 
 				// ----------------Submit File--------------------
 				if (inputLine.equals("submit file")) {
@@ -62,7 +62,7 @@ public class MultiServerThread extends Thread {
 					}
 					FileLoader.writeToFile("clarificationRequests/Problem_"+problemNumber+"_"+System.currentTimeMillis()
 							+"_"+username+".txt", total);
-					MultiServer.submitSomething(new ClarificationSubmission(username, total, "<Unanswered>"));
+					MultiServer.submitSomething(new ClarificationSubmission(username, total, "<Unanswered>", problemNumber));
 				}
 
 				// -----------------View Submission History------------

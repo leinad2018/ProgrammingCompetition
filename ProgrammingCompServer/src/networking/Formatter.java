@@ -12,10 +12,8 @@ public class Formatter {
 	public static String[][] formatInput(Submittable[] submissions) {
 		ArrayList<ProblemSubmission> problemSubmissions=new ArrayList<>();
 		for (Submittable s:submissions) {
-			System.out.println("HeRe?");
 			if (s instanceof ProblemSubmission) {
 				problemSubmissions.add((ProblemSubmission)s);
-				System.out.println("HeRe!");
 			}//otherwise don't add it
 		}
 		
@@ -35,7 +33,6 @@ public class Formatter {
 		
 		Collections.sort(players);
 		String[][] toReturn=new String[players.size()+1][problems+3];
-		System.out.println("QWERTY: "+toReturn.length);
 		toReturn[0][0]="Name";
 		toReturn[0][1]="Problems Correct";
 		toReturn[0][2]="Penalty Points";

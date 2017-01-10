@@ -15,7 +15,7 @@ public class Client {
 	private static Socket kkSocket=null;
 	private static PrintWriter out=null;
 	private static BufferedReader in=null;
-	public static String serverIP="172.16.2.188";
+	public static String serverIP="172.16.8.99";
 	
 	public static void clientInit() {
 		try {
@@ -74,7 +74,6 @@ public class Client {
 	}
 	
 	public static String[][] getSubmissionHistory(String username) {
-		System.out.println("Getting submission history on client");
 		out.println("get submission history");
 		out.println(username);
 		ArrayList<String> read=new ArrayList<String>();
