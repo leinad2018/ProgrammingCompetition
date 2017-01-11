@@ -142,6 +142,17 @@ public class MultiServerThread extends Thread {
 		case "Strings":
 			numberOfTests = 4;
 			break;
+		case "Doors":
+			numberOfTests = 1;
+			break;
+		case "Recursion":
+			numberOfTests = 8;
+			break;
+		case "Toaster":
+			numberOfTests = 6;
+			break;
+		case "Lonely":
+			numberOfTests = 3;
 		}
 		File[] filesToClear = new File(
 				"..\\ProgComp\\" + username + "\\" + ProblemSubmission.questionNumberToQuestionName(problem))

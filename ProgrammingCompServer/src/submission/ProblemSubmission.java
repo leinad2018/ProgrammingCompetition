@@ -38,15 +38,15 @@ public class ProblemSubmission implements Submittable {
 		case 0:
 			return "HelloWorld";
 		case 1:
-			return "Question 1";
+			return "Strings";
 		case 2:
-			return "Question 2";
+			return "Doors";
 		case 3:
-			return "Question 3";
+			return "Lonely";
 		case 4:
-			return "Question 4";
+			return "Recursion";
 		case 5:
-			return "Question 5";
+			return "Toaster";
 		default:
 			return "Unsupported Question number...";	
 		}
