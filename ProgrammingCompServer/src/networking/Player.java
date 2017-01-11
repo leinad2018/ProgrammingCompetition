@@ -37,11 +37,19 @@ public class Player implements Comparable {
 			int me=getCorrectProblems();
 			int them=((Player)o).getCorrectProblems();
 			if (me>them) {
-				return 1;
-			}
-			if (me<them) {
 				return -1;
 			}
+			if (me<them) {
+				return 1;
+			}
+		}
+		int me=getPenaltyPoints();
+		int them=((Player)o).getPenaltyPoints();
+		if (me>them) {
+			return 1;
+		}
+		if (them>me) {
+			return -1;
 		}
 		return 0;
 	}
