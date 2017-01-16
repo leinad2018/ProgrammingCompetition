@@ -17,7 +17,7 @@ public class MultiServerThread extends Thread {
 	private Socket socket = null;
 	private long competitionStartTime;
 
-	public static String users = "asdf DavidHarmeyer";
+	public static String users = "asdf DavidHarmeyer DidntEmailDavid0 DidntEmailDavid1 CantFollowDirections0 CantFollowDirections1 Quinooks Rip Toasterbergs TeamBrianAndChris TheAwesomeClams First BigBoys 80085 TeamQuiche";
 
 	public MultiServerThread(Socket socket, long competitionStartTime) {
 		super("MultiServer Thread");

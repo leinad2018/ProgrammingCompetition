@@ -46,7 +46,7 @@ public class ProblemSubmission implements Submittable {
 		case 4:
 			return "Toaster";
 		case 5:
-			return "Bonus";
+			return "HelloWorld";
 		default:
 			return "Unsupported Question number...";	
 		}

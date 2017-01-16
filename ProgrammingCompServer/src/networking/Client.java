@@ -29,7 +29,7 @@ public class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		serverIP=s.nextLine();
+		serverIP="192.168.1.104";//s.nextLine();
 		try {
 			kkSocket=new Socket(serverIP, 9999);
 			out=new PrintWriter(kkSocket.getOutputStream(), true);

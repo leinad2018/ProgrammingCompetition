@@ -7,7 +7,7 @@ import submission.ProblemSubmission;
 import submission.Submittable;
 
 public class Formatter {
-	public static final int problems=5;
+	public static final int problems=6;
 	
 	public static String[][] formatInput(Submittable[] submissions, long competitionStartTime) {
 		ArrayList<ProblemSubmission> problemSubmissions=new ArrayList<>();

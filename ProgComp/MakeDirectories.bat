@@ -9,6 +9,7 @@ md %personName%\Toaster
 md %personName%\Recursion
 md %personName%\Lonely
 md %personName%\Bonus
+md %personName%\HelloWorld
 shift
 goto loop
 :endloop
