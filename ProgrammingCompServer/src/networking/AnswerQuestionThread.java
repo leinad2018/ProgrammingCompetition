@@ -40,7 +40,7 @@ public class AnswerQuestionThread implements Runnable {
 				System.out.println("Invalid input.");
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
