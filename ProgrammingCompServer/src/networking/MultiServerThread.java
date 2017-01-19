@@ -17,7 +17,9 @@ public class MultiServerThread extends Thread {
 	private Socket socket = null;
 	private long competitionStartTime;
 
-	public static String users = "asdf DavidHarmeyer DidntEmailDavid0 DidntEmailDavid1 CantFollowDirections0 CantFollowDirections1 Quinooks Rip Toasterbergs TeamBrianAndChris TheAwesomeClams First BigBoys 80085 TeamQuiche MemeTeam";
+	public static String users = "asdf DavidHarmeyer DidntEmailDavid0 DidntEmailDavid1 CantFollowDirections0 "
+			+ "CantFollowDirections1 Quinooks Rip Toasterbergs TeamBrianAndChris TheAwesomeClams First BigBoys "
+			+ "80085 TeamQuiche Suchir god amber better idk";
 
 	public MultiServerThread(Socket socket, long competitionStartTime) {
 		super("MultiServer Thread");
@@ -114,7 +116,13 @@ public class MultiServerThread extends Thread {
 				// -------------------VerifyUsernames-----------------------
 				if (inputLine.equals("verify username")) {
 					String username = in.readLine();
-					if (users.contains(username)) {
+					boolean contains=false;
+					for (String s:users.split(" ")) {
+						if (s.equals(username)) {
+							contains=true;
+						}
+					}
+					if (contains) {
 						out.println("Yes");
 					}
 					else {

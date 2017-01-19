@@ -1,0 +1,7 @@
+Microsoft (R) Windows Script Host Version 5.812
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+1
+Compile Error
+Runtime Error
+13:32:27.84
