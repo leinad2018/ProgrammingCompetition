@@ -18,7 +18,7 @@ public class Client {
 	private static Socket kkSocket=null;
 	private static PrintWriter out=null;
 	private static BufferedReader in=null;
-	public static String serverIP="10.10.34.210";
+	public static String serverIP="192.168.1.96";
 	
 	public static void clientInit() {
 		Scanner s=null;

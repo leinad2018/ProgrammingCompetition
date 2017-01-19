@@ -19,10 +19,11 @@ public class MultiServerThread extends Thread {
 
 	public static String users = "asdf DavidHarmeyer DidntEmailDavid0 DidntEmailDavid1 CantFollowDirections0 "
 			+ "CantFollowDirections1 Quinooks Rip Toasterbergs TeamBrianAndChris TheAwesomeClams First BigBoys "
-			+ "80085 TeamQuiche Suchir god amber better idk";
+			+ "80085 TeamQuiche Suchir god amber better idk MemeTeam";
 
 	public MultiServerThread(Socket socket, long competitionStartTime) {
 		super("MultiServer Thread");
+		System.out.println("New version!!!");
 		this.socket = socket;
 		this.competitionStartTime = competitionStartTime;
 	}
@@ -144,7 +145,7 @@ public class MultiServerThread extends Thread {
 	private String gradeSubmission(String fileName, int problem, String username) {
 		int numberOfTests = 1;
 		switch (ProblemSubmission.questionNumberToQuestionName(problem)) {
-		case "HelloWorld":
+		case "Trees":
 			numberOfTests = 1;
 			break;
 		case "Strings":
