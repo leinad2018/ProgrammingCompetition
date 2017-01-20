@@ -1,6 +1,2 @@
-6
-0
-1000
-1252
-132
-2870
+Compile error
+Runtime error

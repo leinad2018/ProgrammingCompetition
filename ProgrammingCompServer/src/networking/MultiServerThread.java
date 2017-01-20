@@ -19,7 +19,7 @@ public class MultiServerThread extends Thread {
 
 	public static String users = "asdf DavidHarmeyer DidntEmailDavid0 DidntEmailDavid1 CantFollowDirections0 "
 			+ "CantFollowDirections1 Quinooks Rip Toasterbergs TeamBrianAndChris TheAwesomeClams First BigBoys "
-			+ "80085 TeamQuiche Suchir god amber better idk MemeTeam";
+			+ "80085 TeamQuiche Suchir god amber better idk MemeTeam Tyler David";
 
 	public MultiServerThread(Socket socket, long competitionStartTime) {
 		super("MultiServer Thread");
