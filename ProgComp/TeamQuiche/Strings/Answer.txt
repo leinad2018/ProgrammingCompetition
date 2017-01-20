@@ -1,7 +1,5 @@
 Microsoft (R) Windows Script Host Version 5.812
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-1
-Compile Error
-Runtime Error
-6:39:00.83
+0
+8:17:48.99

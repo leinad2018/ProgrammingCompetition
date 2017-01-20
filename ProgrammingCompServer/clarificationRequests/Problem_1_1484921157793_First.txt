@@ -1,0 +1,1 @@
+In th example input for Doors, will we have to do number conversions for binary?

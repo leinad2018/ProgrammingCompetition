@@ -1,15 +1,18 @@
 import java.util.Scanner;
-
 public class Strings {
-
+	
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		int n=s.nextInt();
-		long total=0;
-		for (int i=0; i<n; i++) {
-			total+=s.nextInt();
+		Scanner input = new Scanner(System.in);
+		int numofstrings = input.nextInt();
+		// each element in the array is a string length
+		long[] sum = new long[numofstrings];
+		for (int i = 0; i < numofstrings; i++) {
+			sum[i] = input.nextInt();
 		}
-		System.out.println(total);
+		long answer = 0;
+		for (long i : sum) {
+			answer += i;
+		}
+		System.out.println(answer);
 	}
-
 }

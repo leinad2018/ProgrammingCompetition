@@ -1,0 +1,1 @@
+Are the 0s and 1s in the strings random?

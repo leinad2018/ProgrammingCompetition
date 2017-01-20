@@ -1,0 +1,1 @@
+Does all of the input have to happen before the output?

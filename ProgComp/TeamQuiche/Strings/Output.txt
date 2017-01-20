@@ -1,2 +1,4 @@
-Compile error
-Runtime error
+7
+26080
+425650
+1000000000000
