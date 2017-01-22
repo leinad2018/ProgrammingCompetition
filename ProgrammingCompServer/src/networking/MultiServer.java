@@ -10,6 +10,10 @@ public class MultiServer {
 	
 	private static volatile Submittable[] submittedThings=new Submittable[0];
 	
+	public static Submittable[] getSubmittedThings() {
+		return submittedThings;
+	}
+	
 	public static void main(String[] args) throws IOException {
 		System.out.println("Server Started...");
 		Process p = Runtime.getRuntime().exec("cmd /c start ..\\ProgComp\\MakeDirectories.bat "+ "..\\ProgComp " + MultiServerThread.users);
@@ -43,9 +47,5 @@ public class MultiServer {
 		}
 		newArray[newArray.length-1]=toSubmit;
 		submittedThings=newArray;
-	}
-	
-	public static Submittable[] getSubmittedThings() {
-		return submittedThings;
 	}
 }

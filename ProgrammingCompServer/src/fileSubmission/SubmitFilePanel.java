@@ -15,10 +15,10 @@ import main.Main;
 
 public class SubmitFilePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private ComboBoxDemo comboBox;
 	private JButton chooseFileButton, submitButton;
-	private JLabel filePathLabel;
 	private File chosenFile = null;
+	private ComboBoxDemo comboBox;
+	private JLabel filePathLabel;
 	private File lastFileDir;
 
 	public SubmitFilePanel() {
@@ -58,17 +58,17 @@ public class SubmitFilePanel extends JPanel {
 		add(submitButton);
 	}
 
+	public void onSubmitClicked() {
+		Main.submitFileToServer(chosenFile, Main.username, comboBox.getSelected());
+		GeneralWindow.main.setContentType(ContentTypes.VIEW_SUBMISSION_HISTORY);
+	}
+
 	public void setPathText(File file) {
 		String path = chosenFile.getPath();
 		if (path.length() > 25) {
 			path = "..." + path.substring(path.length() - 22);
 		}
 		filePathLabel.setText(path);
-	}
-
-	public void onSubmitClicked() {
-		Main.submitFileToServer(chosenFile, Main.username, comboBox.getSelected());
-		GeneralWindow.main.setContentType(ContentTypes.VIEW_SUBMISSION_HISTORY);
 	}
 
 	public File tryToChooseFile() {

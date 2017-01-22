@@ -11,8 +11,8 @@ import submission.ProblemSubmission;
 
 public class ComboBoxDemo extends JPanel {
 
-	private static final long serialVersionUID=1L;
 	private static JComboBox<String> petList;
+	private static final long serialVersionUID=1L;
 	
 	
 	public ComboBoxDemo() {

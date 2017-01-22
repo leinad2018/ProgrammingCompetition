@@ -11,23 +11,43 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class OldLoginSystem {
-	private JFrame frame=new JFrame();
-	private JPanel mainPanel=new JPanel();
-	private JLabel usernameLabel=new JLabel("Username: ");
-	private JTextField usernameBox=new JTextField(10);
-	private JButton submitButton=new JButton("Choose File");
-	private boolean loginPressed=false;
-	private String username="";
 	private ComboBoxDemo comboBox=new ComboBoxDemo();
+	private JFrame frame=new JFrame();
+	private boolean loginPressed=false;
+	private JPanel mainPanel=new JPanel();
 	private int problem=0;
+	private JButton submitButton=new JButton("Choose File");
+	private String username="";
+	private JTextField usernameBox=new JTextField(10);
+	private JLabel usernameLabel=new JLabel("Username: ");
 	
 	public OldLoginSystem() {
 		setUpFrame();
 	}
 	
+	public int getProblem() {
+		return problem;
+	}
+	
+	public String getUsername() {
+		return username.replaceAll(" ", "").replaceAll("\t", "");
+	}
+	
+	public boolean loginPressed() {
+		return loginPressed;
+	}
+	
+	private void onButtonPressed() {
+		problem=comboBox.getSelected();
+		username=usernameBox.getText();
+		loginPressed=true;
+		frame.setVisible(false);
+	}
+	
 	private void setUpFrame() {
 		final OldLoginSystem window=this;
 		submitButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				window.onButtonPressed();
 			}
@@ -45,24 +65,5 @@ public class OldLoginSystem {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
-	public boolean loginPressed() {
-		return loginPressed;
-	}
-	
-	private void onButtonPressed() {
-		problem=comboBox.getSelected();
-		username=usernameBox.getText();
-		loginPressed=true;
-		frame.setVisible(false);
-	}
-	
-	public String getUsername() {
-		return username.replaceAll(" ", "").replaceAll("\t", "");
-	}
-	
-	public int getProblem() {
-		return problem;
 	}
 }
