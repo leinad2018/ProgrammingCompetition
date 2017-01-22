@@ -13,14 +13,14 @@ import javax.swing.JTextField;
 import networking.Client;
 
 public class LoginWindow {
+	public volatile boolean credentialsVerified=false;
 	private JFrame frame;
+	private JLabel invalidLoginCredentials;
 	private JPanel mainPanel;
+	private JButton submitButton;
+	private String username;
 	private JLabel usernameLabel;
 	private JTextField usernameTextBox;
-	private JButton submitButton;
-	private JLabel invalidLoginCredentials;
-	public volatile boolean credentialsVerified=false;
-	private String username;
 	
 	public LoginWindow() {
 		frame=new JFrame();
@@ -30,6 +30,7 @@ public class LoginWindow {
 		submitButton=new JButton("Submit");
 		final LoginWindow me=this;
 		submitButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				me.onSubmitClicked();
 			}
@@ -49,6 +50,14 @@ public class LoginWindow {
 		frame.setVisible(true);
 	}
 	
+	public boolean areCredentialsVerified() {
+		return credentialsVerified;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
 	public void onSubmitClicked() {
 		username=usernameTextBox.getText();
 		if (verifyCredentials(username)) {
@@ -66,13 +75,5 @@ public class LoginWindow {
 	
 	public boolean verifyCredentials(String username) {
 		return Client.verifyUsername(username);
-	}
-	
-	public boolean areCredentialsVerified() {
-		return credentialsVerified;
-	}
-	
-	public String getUsername() {
-		return username;
 	}
 }

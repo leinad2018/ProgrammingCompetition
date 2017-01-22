@@ -14,12 +14,12 @@ import submission.ProblemSubmission;
 import submission.Submittable;
 
 public class MultiServerThread extends Thread {
-	private Socket socket = null;
-	private long competitionStartTime;
-
 	public static String users = "asdf DavidHarmeyer DidntEmailDavid0 DidntEmailDavid1 CantFollowDirections0 "
 			+ "CantFollowDirections1 Quinooks Rip Toasterbergs TeamBrianAndChris TheAwesomeClams First BigBoys "
 			+ "80085 TeamQuiche Suchir god amber better idk";
+	private long competitionStartTime;
+
+	private Socket socket = null;
 
 	public MultiServerThread(Socket socket, long competitionStartTime) {
 		super("MultiServer Thread");
@@ -27,6 +27,99 @@ public class MultiServerThread extends Thread {
 		this.competitionStartTime = competitionStartTime;
 	}
 
+	private String gradeSubmission(String fileName, int problem, String username) {
+		int numberOfTests = 1;
+		switch (ProblemSubmission.questionNumberToQuestionName(problem)) {
+		case "HelloWorld":
+			numberOfTests = 1;
+			break;
+		case "Strings":
+			numberOfTests = 4;
+			break;
+		case "Doors":
+			numberOfTests = 1;
+			break;
+		case "Recursion":
+			numberOfTests = 8;
+			break;
+		case "Toaster":
+			numberOfTests = 6;
+			break;
+		case "Lonely":
+			numberOfTests = 3;
+		}
+		File[] filesToClear = new File(
+				"..\\ProgComp\\" + username + "\\" + ProblemSubmission.questionNumberToQuestionName(problem))
+						.listFiles();
+		for (File x : filesToClear) {
+			if ( !x.getName().equals(ProblemSubmission.questionNumberToQuestionName(problem) + ".java")) x.delete();
+		}
+		for (int i = 1; i <= numberOfTests; i++) {
+			System.out.println("Test " + i);
+			File[] files = new File(
+					"..\\ProgComp\\" + username + "\\" + ProblemSubmission.questionNumberToQuestionName(problem))
+							.listFiles();
+			for (File x : files) {
+				if ( !x.getName().equals("Output.txt")
+						&& !x.getName().equals(ProblemSubmission.questionNumberToQuestionName(problem) + ".java")) {
+					//Keeps trying to delete the file
+					while(!x.delete());
+				}
+			}
+
+			long startTime = System.currentTimeMillis();
+			Process p = null;
+			try {
+				p = Runtime.getRuntime()
+						.exec("cmd /c start ..\\ProgComp\\RunTests.bat " + "..\\ProgComp " + username + " "
+								+ ProblemSubmission.questionNumberToQuestionName(problem) + " " + "OurPrograms\\"
+								+ ProblemSubmission.questionNumberToQuestionName(problem) + "In" + i + ".txt");
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			boolean timeout = true;
+			while (System.currentTimeMillis() - startTime < 6000) {
+				if (FileLoader.fileExists("..\\ProgComp\\" + username + "\\"
+						+ ProblemSubmission.questionNumberToQuestionName(problem) + "\\Answer.txt")) {
+					timeout = false;
+					String[] answer = FileLoader.readFile("..\\ProgComp\\" + username + "\\"
+							+ ProblemSubmission.questionNumberToQuestionName(problem) + "\\Answer.txt");
+					while (answer.length <= 4) {
+						answer = FileLoader.readFile("..\\ProgComp\\" + username + "\\"
+								+ ProblemSubmission.questionNumberToQuestionName(problem) + "\\Answer.txt");
+					}
+					for(String x: answer){
+						System.out.println(x);
+					}
+					if ( !answer[3].equals("0")) {
+						if (answer[4].equals("Runtime Error")) {
+							return "RuntimeError";
+						}
+						else if (answer[4].equals("Compile Error")) {
+							return "CompileError";
+						}
+						else if (i == numberOfTests) {
+							return "Incorrect";
+						}else{
+							break;
+						}
+					}else{
+						return "Correct";
+					}
+				}
+			}
+			if (timeout) {
+				p.destroyForcibly();
+				return "Timeout";
+			}
+		}
+
+		return "Correct";
+	}
+
+	@Override
 	public void run() {
 
 		try {
@@ -139,97 +232,5 @@ public class MultiServerThread extends Thread {
 		IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private String gradeSubmission(String fileName, int problem, String username) {
-		int numberOfTests = 1;
-		switch (ProblemSubmission.questionNumberToQuestionName(problem)) {
-		case "HelloWorld":
-			numberOfTests = 1;
-			break;
-		case "Strings":
-			numberOfTests = 4;
-			break;
-		case "Doors":
-			numberOfTests = 1;
-			break;
-		case "Recursion":
-			numberOfTests = 8;
-			break;
-		case "Toaster":
-			numberOfTests = 6;
-			break;
-		case "Lonely":
-			numberOfTests = 3;
-		}
-		File[] filesToClear = new File(
-				"..\\ProgComp\\" + username + "\\" + ProblemSubmission.questionNumberToQuestionName(problem))
-						.listFiles();
-		for (File x : filesToClear) {
-			if ( !x.getName().equals(ProblemSubmission.questionNumberToQuestionName(problem) + ".java")) x.delete();
-		}
-		for (int i = 1; i <= numberOfTests; i++) {
-			System.out.println("Test " + i);
-			File[] files = new File(
-					"..\\ProgComp\\" + username + "\\" + ProblemSubmission.questionNumberToQuestionName(problem))
-							.listFiles();
-			for (File x : files) {
-				if ( !x.getName().equals("Output.txt")
-						&& !x.getName().equals(ProblemSubmission.questionNumberToQuestionName(problem) + ".java")) {
-					//Keeps trying to delete the file
-					while(!x.delete());
-				}
-			}
-
-			long startTime = System.currentTimeMillis();
-			Process p = null;
-			try {
-				p = Runtime.getRuntime()
-						.exec("cmd /c start ..\\ProgComp\\RunTests.bat " + "..\\ProgComp " + username + " "
-								+ ProblemSubmission.questionNumberToQuestionName(problem) + " " + "OurPrograms\\"
-								+ ProblemSubmission.questionNumberToQuestionName(problem) + "In" + i + ".txt");
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			boolean timeout = true;
-			while (System.currentTimeMillis() - startTime < 6000) {
-				if (FileLoader.fileExists("..\\ProgComp\\" + username + "\\"
-						+ ProblemSubmission.questionNumberToQuestionName(problem) + "\\Answer.txt")) {
-					timeout = false;
-					String[] answer = FileLoader.readFile("..\\ProgComp\\" + username + "\\"
-							+ ProblemSubmission.questionNumberToQuestionName(problem) + "\\Answer.txt");
-					while (answer.length <= 4) {
-						answer = FileLoader.readFile("..\\ProgComp\\" + username + "\\"
-								+ ProblemSubmission.questionNumberToQuestionName(problem) + "\\Answer.txt");
-					}
-					for(String x: answer){
-						System.out.println(x);
-					}
-					if ( !answer[3].equals("0")) {
-						if (answer[4].equals("Runtime Error")) {
-							return "RuntimeError";
-						}
-						else if (answer[4].equals("Compile Error")) {
-							return "CompileError";
-						}
-						else if (i == numberOfTests) {
-							return "Incorrect";
-						}else{
-							break;
-						}
-					}else{
-						return "Correct";
-					}
-				}
-			}
-			if (timeout) {
-				p.destroyForcibly();
-				return "Timeout";
-			}
-		}
-
-		return "Correct";
 	}
 }

@@ -15,9 +15,9 @@ import fileIO.FileLoader;
 
 public class Client {
 	
+	private static BufferedReader in=null;
 	private static Socket kkSocket=null;
 	private static PrintWriter out=null;
-	private static BufferedReader in=null;
 	public static String serverIP="192.168.1.96";
 	
 	public static void clientInit() {
@@ -60,6 +60,29 @@ public class Client {
 	}*/
 	
 	
+	public static String[][] getSubmissionHistory(String username) {
+		out.println("get submission history");
+		out.println(username);
+		ArrayList<String> read=new ArrayList<String>();
+		try {
+			String lastLine=in.readLine();
+			while (lastLine.startsWith("fake:")) {
+				read.add(lastLine);
+				lastLine=in.readLine();
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String[][] toReturn=new String[read.size()/4][4];
+		for (int x=0; x<toReturn.length; x++) {
+			for (int y=0; y<4; y++) {
+				toReturn[x][y]=read.get(x*4+y).substring(5);
+			}
+		}
+		return toReturn;
+	}
+	
 	public static void submitFile(String username, int problem, String filePath) {
 		out.println("submit file");
 		out.println(username);
@@ -85,27 +108,15 @@ public class Client {
 		out.println("done");
 	}
 	
-	public static String[][] getSubmissionHistory(String username) {
-		out.println("get submission history");
+	public static boolean verifyUsername(String username){
+		out.println("verify username");
 		out.println(username);
-		ArrayList<String> read=new ArrayList<String>();
 		try {
-			String lastLine=in.readLine();
-			while (lastLine.startsWith("fake:")) {
-				read.add(lastLine);
-				lastLine=in.readLine();
-			}
-			
+			return in.readLine().equals("Yes");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		String[][] toReturn=new String[read.size()/4][4];
-		for (int x=0; x<toReturn.length; x++) {
-			for (int y=0; y<4; y++) {
-				toReturn[x][y]=read.get(x*4+y).substring(5);
-			}
-		}
-		return toReturn;
+		return false;
 	}
 	
 	public static String[][] viewScores(String username) {
@@ -131,17 +142,6 @@ public class Client {
 			}
 		}
 		return toReturn;
-	}
-	
-	public static boolean verifyUsername(String username){
-		out.println("verify username");
-		out.println(username);
-		try {
-			return in.readLine().equals("Yes");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return false;
 	}
 }
 

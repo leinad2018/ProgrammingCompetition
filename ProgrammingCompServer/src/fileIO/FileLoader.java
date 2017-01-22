@@ -2,12 +2,12 @@ package fileIO;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
-import java.io.File;
 
 /**
  * A simple, easy-to-use class that reads and writes from a file
@@ -17,27 +17,14 @@ import java.io.File;
 public class FileLoader {
 
 	/**
-	 * Writes the String contents to the file with the name filename. Note that
-	 * the file will be cleared before writing.
+	 * Checks to see if the file exists
 	 * 
-	 * @param filename
+	 * @param name
 	 *            The name of the file
-	 * @param contents
-	 *            The contents of the file
+	 * @return True if the file exists, false otherwise.
 	 */
-	public static void writeToFile(String filename, String contents) {
-		if (!filename.endsWith(".txt")&&!filename.contains(".")) {
-			filename+=".txt";
-		}
-		FileWriter fw=null;
-		try {
-			fw=new FileWriter(filename);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		PrintWriter writer=new PrintWriter(fw);
-		writer.print(contents);
-		writer.close();
+	public static boolean fileExists(String name) {
+		return new File(name).exists();
 	}
 
 	/**
@@ -64,17 +51,30 @@ public class FileLoader {
 		}
 
 		fileList.removeLast();
-		return (String[])(fileList.toArray(new String[fileList.size()]));
+		return (fileList.toArray(new String[fileList.size()]));
 	}
 
 	/**
-	 * Checks to see if the file exists
+	 * Writes the String contents to the file with the name filename. Note that
+	 * the file will be cleared before writing.
 	 * 
-	 * @param name
+	 * @param filename
 	 *            The name of the file
-	 * @return True if the file exists, false otherwise.
+	 * @param contents
+	 *            The contents of the file
 	 */
-	public static boolean fileExists(String name) {
-		return new File(name).exists();
+	public static void writeToFile(String filename, String contents) {
+		if (!filename.endsWith(".txt")&&!filename.contains(".")) {
+			filename+=".txt";
+		}
+		FileWriter fw=null;
+		try {
+			fw=new FileWriter(filename);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		PrintWriter writer=new PrintWriter(fw);
+		writer.print(contents);
+		writer.close();
 	}
 }

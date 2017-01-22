@@ -16,10 +16,10 @@ import main.Main;
 public class AskClarificationPanel extends JPanel {
 	private static final long serialVersionUID=1L;
 
-	private JLabel whichQuestionLabel;
 	private ComboBoxDemo questionComboBox;
-	private JTextArea textArea;
 	private JButton submitRequestButton;
+	private JTextArea textArea;
+	private JLabel whichQuestionLabel;
 	
 	public AskClarificationPanel() {
 		final AskClarificationPanel me=this;
@@ -28,6 +28,7 @@ public class AskClarificationPanel extends JPanel {
 		textArea=new JTextArea("", 7, 30);
 		submitRequestButton=new JButton("Submit Request");
 		submitRequestButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				me.onSubmitRequestButtonPressed();
 			}

@@ -2,8 +2,8 @@ package submission;
 
 public class ClarificationSubmission implements Submittable {
 	
-	private long submissionTime;
 	private String question, answer, username;
+	private long submissionTime;
 	
 	
 	public ClarificationSubmission(String username, String question, String answer, int problemNumber) {
@@ -13,26 +13,31 @@ public class ClarificationSubmission implements Submittable {
 		this.answer=answer;
 	}
 	
-	public long getSubmissionTime() {
-		return submissionTime;
+	@Override
+	public String getAnswer() {
+		return answer;
 	}
 
+	@Override
 	public String getQuestion() {
 		return question;
 	}
 
-	public String getAnswer() {
-		return answer;
+	@Override
+	public long getSubmissionTime() {
+		return submissionTime;
 	}
 	
-	public void setAnswer(String answer) {
-		this.answer=answer;
-	}
-
+	@Override
 	public String getSubmittedBy() {
 		return username;
 	}
+
+	public void setAnswer(String answer) {
+		this.answer=answer;
+	}
 	
+	@Override
 	public String toString() {
 		return question+"\nFrom "+username;
 	}

@@ -2,37 +2,6 @@ package submission;
 
 public class ProblemSubmission implements Submittable {
 
-	private long submissionTime;
-	private int problemNumber;
-	private boolean correct;
-	private String returnMessage, username;
-	
-	public ProblemSubmission(String username, int problemNumber, boolean correct, String returnMessage) {
-		this.submissionTime=System.currentTimeMillis();
-		this.username=username;
-		this.problemNumber=problemNumber;
-		this.correct=correct;
-		this.returnMessage=returnMessage;
-	}
-	
-	public long getSubmissionTime() {
-		return submissionTime;
-	}
-
-
-	public String getQuestion() {
-		return questionNumberToQuestionName(problemNumber);
-	}
-
-
-	public String getAnswer() {
-		return returnMessage;
-	}
-	
-	public boolean isCorrect() {
-		return correct;
-	}
-	
 	public static String questionNumberToQuestionName(int questionNumber) {
 		switch(questionNumber) {
 		case 0:
@@ -51,12 +20,47 @@ public class ProblemSubmission implements Submittable {
 			return "Unsupported Question number...";	
 		}
 	}
+	private boolean correct;
+	private int problemNumber;
+	private String returnMessage, username;
+	
+	private long submissionTime;
+	
+	public ProblemSubmission(String username, int problemNumber, boolean correct, String returnMessage) {
+		this.submissionTime=System.currentTimeMillis();
+		this.username=username;
+		this.problemNumber=problemNumber;
+		this.correct=correct;
+		this.returnMessage=returnMessage;
+	}
 
+
+	@Override
+	public String getAnswer() {
+		return returnMessage;
+	}
+
+
+	@Override
+	public String getQuestion() {
+		return questionNumberToQuestionName(problemNumber);
+	}
+	
+	public int getQuestionNumber() {
+		return problemNumber;
+	}
+	
+	@Override
+	public long getSubmissionTime() {
+		return submissionTime;
+	}
+
+	@Override
 	public String getSubmittedBy() { 
 		return username;
 	}
 
-	public int getQuestionNumber() {
-		return problemNumber;
+	public boolean isCorrect() {
+		return correct;
 	}
 }

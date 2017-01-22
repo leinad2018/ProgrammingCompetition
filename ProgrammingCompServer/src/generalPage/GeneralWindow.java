@@ -15,12 +15,12 @@ import submissionHistory.SubmissionHistoryPanel;
 import viewScores.ViewScoresPanel;
 
 public class GeneralWindow {
+	public static GeneralWindow main;
+	private JLabel contentLabel;
+	private ContentTypes currentContentType=ContentTypes.VIEW_SCORES;
 	private JFrame frame;
 	private JPanel mainPanel, buttonsPanel, contentPanel;
 	private JButton viewScores, submitSolution, askClarification, viewSubmissionHistory;
-	private ContentTypes currentContentType=ContentTypes.VIEW_SCORES;
-	private JLabel contentLabel;
-	public static GeneralWindow main;
 	
 	public GeneralWindow() {
 		main=this;
@@ -39,28 +39,37 @@ public class GeneralWindow {
 		updateThread.start();
 	}
 
+	public void setContentType(ContentTypes newContentType) {
+		this.currentContentType=newContentType;
+		updateContentType();
+	}
+
 	private void setUpButtons() {
 		final GeneralWindow me=this;
 		viewScores=new JButton("View Scores");
 		viewScores.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				me.setContentType(ContentTypes.VIEW_SCORES);
 			}
 		});
 		submitSolution=new JButton("Submit Solution");
 		submitSolution.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				me.setContentType(ContentTypes.SUBMIT_SOLUTION);
 			}
 		});
 		askClarification=new JButton("Ask Clarification");
 		askClarification.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				me.setContentType(ContentTypes.ASK_CLARIFICATION);
 			}
 		});
 		viewSubmissionHistory=new JButton("View Submission History");
 		viewSubmissionHistory.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				me.setContentType(ContentTypes.VIEW_SUBMISSION_HISTORY);
 			}
@@ -81,10 +90,11 @@ public class GeneralWindow {
 		contentLabel=new JLabel("This is the contentPanel");
 		contentPanel.add(contentLabel);
 	}
-
-	public void setContentType(ContentTypes newContentType) {
-		this.currentContentType=newContentType;
-		updateContentType();
+	
+	public void softContentUpdate() {
+		if (currentContentType==ContentTypes.VIEW_SCORES||currentContentType==ContentTypes.VIEW_SUBMISSION_HISTORY) {
+			updateContentType();
+		}
 	}
 	
 	public void updateContentType() {
@@ -112,12 +122,6 @@ public class GeneralWindow {
 		default:
 			System.out.println("Invalid Content Type!");
 			throw new Error("Invalid Content Type!");
-		}
-	}
-	
-	public void softContentUpdate() {
-		if (currentContentType==ContentTypes.VIEW_SCORES||currentContentType==ContentTypes.VIEW_SUBMISSION_HISTORY) {
-			updateContentType();
 		}
 	}
 }

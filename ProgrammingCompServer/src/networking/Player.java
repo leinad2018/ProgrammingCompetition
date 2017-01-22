@@ -3,11 +3,11 @@ package networking;
 import submission.ProblemSubmission;
 
 public class Player implements Comparable {
-	private String username;
-	private int[] problemSubmissions=new int[500];//max of 500 problems
+	private long competitionStartTime;
 	private boolean[] correctProblems=new boolean[500];
 	private long[] problemCompletionTime=new long[500];
-	private long competitionStartTime;
+	private int[] problemSubmissions=new int[500];//max of 500 problems
+	private String username;
 	
 	
 	public Player(String username, long competitionStartTime) {
@@ -20,10 +20,6 @@ public class Player implements Comparable {
 		this.competitionStartTime=competitionStartTime;
 	}
 	
-	public boolean isUsername(String username) {
-		return username.equals(this.username);
-	}
-	
 	public void addSubmission(ProblemSubmission submission) {
 		problemSubmissions[submission.getQuestionNumber()]++;
 		correctProblems[submission.getQuestionNumber()]=correctProblems[submission.getQuestionNumber()]||submission.isCorrect();
@@ -31,7 +27,8 @@ public class Player implements Comparable {
 			problemCompletionTime[submission.getQuestionNumber()]=submission.getSubmissionTime()-competitionStartTime;
 		}
 	}
-
+	
+	@Override
 	public int compareTo(Object o) {
 		if (o instanceof Player) {
 			int me=getCorrectProblems();
@@ -53,7 +50,7 @@ public class Player implements Comparable {
 		}
 		return 0;
 	}
-	
+
 	public int getCorrectProblems() {
 		int total=0;
 		for (boolean b:correctProblems) {
@@ -79,11 +76,15 @@ public class Player implements Comparable {
 		return total;
 	}
 	
+	public int getProblemSubmissions(int problem) {
+		return problemSubmissions[problem];
+	}
+	
 	public boolean gotProblemCorrect(int problem) {
 		return correctProblems[problem];
 	}
 	
-	public int getProblemSubmissions(int problem) {
-		return problemSubmissions[problem];
+	public boolean isUsername(String username) {
+		return username.equals(this.username);
 	}
 }

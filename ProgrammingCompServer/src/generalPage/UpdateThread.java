@@ -8,6 +8,7 @@ public class UpdateThread implements Runnable {
 		this.toUpdate=toUpdate;
 	}
 	
+	@Override
 	public void run() {
 		while (true) {
 			try {
