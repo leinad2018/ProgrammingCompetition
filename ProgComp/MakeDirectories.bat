@@ -3,13 +3,17 @@ shift
 :loop
 if "%1"=="" goto endloop
 set personName=%1
-md %personName%\Strings
-md %personName%\Doors
-md %personName%\Toaster
-md %personName%\Recursion
-md %personName%\Lonely
-md %personName%\Bonus
-md %personName%\HelloWorld
+md %personName%\hoo
+md %personName%\fractal
+md %personName%\fishytoo
+md %personName%\flowers
+md %personName%\sums
+md %personName%\nurikabe
+md %personName%\troll
+md %personName%\dollar
+md %personName%\bird
+md %personName%\eggs
+md %personName%\lobster
 shift
 goto loop
 :endloop

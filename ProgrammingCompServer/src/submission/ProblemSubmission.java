@@ -36,17 +36,27 @@ public class ProblemSubmission implements Submittable {
 	public static String questionNumberToQuestionName(int questionNumber) {
 		switch(questionNumber) {
 		case 0:
-			return "Strings";
+			return "hoo";
 		case 1:
-			return "Doors";
+			return "fractal";
 		case 2:
-			return "Lonely";
+			return "fishytoo";
 		case 3:
-			return "Recursion";
+			return "flowers";
 		case 4:
-			return "Toaster";
+			return "sums";
 		case 5:
-			return "HelloWorld";
+			return "nurikabe";
+		case 6:
+			return "troll";
+		case 7:
+			return "dollar";
+		case 8:
+			return "bird";
+		case 9:
+			return "eggs";
+		case 10:
+			return "lobster";
 		default:
 			return "Unsupported Question number...";	
 		}
